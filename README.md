@@ -2,7 +2,7 @@
 
 ![AI](https://img.shields.io/badge/AI-Claude%20(Anthropic)-blueviolet)
 ![Language](https://img.shields.io/badge/Language-繁體中文-red)
-[![教材授權](https://img.shields.io/badge/License-Permission%20Required-2c4a76)](LICENSE.md)
+[![教材使用說明](https://img.shields.io/badge/License-Permission%20Required-2c4a76)](LICENSE.md)
 [![總覽頁](https://img.shields.io/badge/總覽頁-GitHub%20Pages-1a3a5c)](https://mjib007.github.io/fair-trade-law-interpretation/)
 
 > 從生活中的廣告、贈品與價格開始，一條一條讀懂公平交易法。
@@ -38,6 +38,6 @@
 
 ## 授權
 
-公開閱覽；教材重製、改編、系所採用請先洽書面授權，詳見 [LICENSE.md](LICENSE.md) 與 [licensing.html](licensing.html)。
+公開閱覽；重製、改編或其他利用請先取得同意，詳見 [LICENSE.md](LICENSE.md) 與 [licensing.html](licensing.html)。
 
 教材供研讀與教學參考，不構成個案法律意見。
