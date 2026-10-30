@@ -1,639 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>公平交易法教材總覽 | fair-trade-law-interpretation</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="從生活案例讀懂公平交易法。85秒動畫、條文逐句講解與互動練習，從不實廣告開始學習。">
+<title>公平交易法｜從生活案例開始</title>
 <style>
-  :root{
-    --ink: #16233b;
-    --indigo: #2c4a76;
-    --indigo-soft: #3f5f8f;
-    --parchment: #f3ede0;
-    --paper: #fbf8f1;
-    --paper-panel: #fffdf8;
-    --seal: #9c2b3a;
-    --seal-soft: #c7566450;
-    --brass: #a9832f;
-    --line: #ddd3bf;
-    --ink-70: rgba(22,35,59,0.7);
-    --ink-45: rgba(22,35,59,0.45);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:"Noto Sans TC",sans-serif;
-    background:var(--parchment);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* ---------- cover ---------- */
-  .cover{
-    position:relative;
-    max-width:1000px;
-    margin:0 auto;
-    padding:56px 1.5rem 40px;
-    border-bottom:1px solid var(--line);
-  }
-  .cover .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:.74rem;
-    letter-spacing:.24em;
-    color:var(--brass);
-    font-weight:700;
-    margin-bottom:16px;
-  }
-  .cover .eyebrow::before{
-    content:"";
-    width:22px;height:1px;
-    background:var(--brass);
-  }
-  .cover h1{
-    font-family:"Noto Serif TC",serif;
-    font-weight:900;
-    font-size:2.1rem;
-    line-height:1.35;
-    margin:0 0 10px;
-    color:var(--ink);
-    letter-spacing:.01em;
-  }
-  .cover .sub{
-    font-size:1rem;
-    color:var(--indigo);
-    font-weight:500;
-    margin:0;
-  }
-  .cover-meta{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-top:18px;
-    flex-wrap:wrap;
-  }
-  .ver-badge{
-    font-family:"Noto Serif TC",serif;
-    font-weight:700;
-    font-size:.78rem;
-    color:var(--seal);
-    border:1px solid var(--seal);
-    border-radius:20px;
-    padding:3px 12px;
-    letter-spacing:.03em;
-  }
-  .meta-date{
-    font-size:.8rem;
-    color:var(--ink-45);
-  }
-  .license-note{
-    font-size:.78rem;
-    color:var(--ink-45);
-    margin:10px 0 0;
-  }
-  .license-note a{
-    color:var(--indigo);
-    text-decoration:underline;
-    text-underline-offset:2px;
-  }
-  .license-note a:hover{
-    color:var(--seal);
-  }
-  .cover .seal-mark{
-    position:absolute;
-    top:48px;
-    right:1.5rem;
-    width:76px;
-    height:76px;
-    border:2.5px solid var(--seal);
-    border-radius:6px;
-    color:var(--seal);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:"Noto Serif TC",serif;
-    font-weight:900;
-    font-size:1.15rem;
-    letter-spacing:.1em;
-    writing-mode:vertical-rl;
-    opacity:.82;
-    transform:rotate(3deg);
-    background:rgba(156,43,58,0.03);
-  }
-
-  main{
-    max-width:1000px;
-    margin:0 auto;
-    padding:1.5rem 1.5rem 4rem;
-  }
-  .controls{
-    display:flex;
-    gap:.75rem;
-    flex-wrap:wrap;
-    margin-bottom:1.5rem;
-    position:sticky;
-    top:0;
-    background:var(--parchment);
-    padding:1rem 0;
-    z-index:5;
-  }
-  .controls input[type="text"],
-  .controls select{
-    font-family:inherit;
-    font-size:.95rem;
-    padding:.6rem .9rem;
-    border:1px solid var(--line);
-    border-radius:6px;
-    background:var(--paper-panel);
-    color:var(--ink);
-    outline:none;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .controls input[type="text"]:focus,
-  .controls select:focus{
-    border-color:var(--indigo);
-    box-shadow:0 0 0 3px rgba(44,74,118,.14);
-  }
-  .controls select{
-    color:var(--ink-45);
-  }
-  .controls select.filtered{
-    color:var(--seal);
-    font-weight:700;
-    border-color:var(--seal);
-  }
-  .controls input[type="text"]{
-    flex:1;
-    min-width:180px;
-  }
-  .controls select{
-    min-width:220px;
-  }
-  .count{
-    font-size:.85rem;
-    color:var(--ink-45);
-    margin-bottom:1rem;
-  }
-  .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:1rem;
-  }
-  .card{
-    display:block;
-    text-decoration:none;
-    color:inherit;
-    background:var(--paper-panel);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:1.2rem 1.3rem;
-    transition:box-shadow .15s ease, transform .15s ease, border-color .15s ease;
-  }
-  .card:hover{
-    box-shadow:0 6px 18px rgba(22,35,59,.10);
-    transform:translateY(-2px);
-    border-color:var(--brass);
-  }
-  .card .articles{
-    font-family:"Noto Serif TC",serif;
-    font-weight:700;
-    color:var(--ink);
-    font-size:1.05rem;
-    margin-bottom:.4rem;
-  }
-  .card .title{
-    font-size:.95rem;
-    color:var(--ink-70);
-    margin-bottom:.8rem;
-    line-height:1.4;
-  }
-  .card .meta{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:.78rem;
-    color:var(--ink-45);
-  }
-  .card .tag{
-    background:var(--parchment);
-    color:var(--brass);
-    padding:.15rem .55rem;
-    border-radius:999px;
-    font-size:.72rem;
-    border:1px solid var(--line);
-  }
-  .card .date{
-    color:var(--seal);
-    font-weight:500;
-  }
-  .empty{
-    text-align:center;
-    color:var(--ink-45);
-    padding:3rem 0;
-    font-size:.95rem;
-    font-style:italic;
-  }
-
-  /* 分類覆蓋地圖 */
-  .coverage{
-    background:var(--paper-panel);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:1.1rem 1.3rem 1.3rem;
-    margin-bottom:1.5rem;
-  }
-  .coverage-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:.7rem;
-  }
-  .coverage-header h2{
-    font-family:"Noto Serif TC",serif;
-    font-size:1rem;
-    font-weight:700;
-    color:var(--ink);
-    margin:0;
-  }
-  .coverage-header .progress{
-    font-size:.8rem;
-    color:var(--ink-45);
-  }
-  .coverage-sub{
-    font-family:"Noto Serif TC",serif;
-    font-size:.82rem;
-    font-weight:700;
-    color:var(--indigo);
-    margin:1.1rem 0 .6rem;
-    padding-bottom:.35rem;
-    border-bottom:1px solid var(--line);
-  }
-  .coverage-sub:first-of-type{margin-top:0;}
-  .coverage-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:1rem;
-  }
-  .chapter-block{
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:.9rem 1rem 1rem;
-    background:var(--paper);
-  }
-  .chapter-block > .chapter-title{
-    font-family:"Noto Serif TC",serif;
-    font-size:.85rem;
-    font-weight:700;
-    color:var(--brass);
-    letter-spacing:.02em;
-    margin-bottom:.5rem;
-    padding-bottom:.4rem;
-    border-bottom:1px solid var(--line);
-  }
-  .leaf-list{
-    list-style:none;
-    margin:0;
-    padding:0;
-  }
-  .leaf-list li{
-    margin:.15rem 0;
-  }
-  .leaf-btn{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    width:100%;
-    background:none;
-    border:none;
-    font-family:inherit;
-    font-size:.82rem;
-    padding:.3rem .5rem;
-    border-radius:5px;
-    cursor:pointer;
-    color:var(--ink-70);
-    text-align:left;
-  }
-  .leaf-btn:hover:not(.zero){
-    background:rgba(44,74,118,0.07);
-  }
-  .leaf-btn .badge{
-    min-width:1.6em;
-    text-align:center;
-    font-size:.75rem;
-    font-weight:700;
-    padding:.1rem .5rem;
-    border-radius:999px;
-  }
-
-  .leaf-btn.has-count{
-    font-weight:700;
-    color:var(--ink);
-  }
-  .leaf-btn.has-count .badge{
-    background:rgba(169,131,47,0.16);
-    color:var(--brass);
-  }
-
-  .leaf-btn.zero{
-    color:var(--ink-45);
-    cursor:not-allowed;
-    opacity:.6;
-  }
-  .leaf-btn.zero .badge{
-    background:none;
-    color:var(--ink-45);
-    font-weight:400;
-  }
-
-  .leaf-btn.active{
-    box-shadow: inset 0 0 0 2px var(--seal);
-  }
-  .leaf-btn.active.has-count{
-    background:rgba(156,43,58,0.05);
-  }
-
-  .leaf-btn.chapter-merged{
-    font-family:"Noto Serif TC",serif;
-    font-size:.85rem;
-    font-weight:700;
-    color:var(--brass);
-    padding:.3rem .2rem .5rem;
-    border-radius:0;
-  }
-  .leaf-btn.chapter-merged .badge{
-    background:rgba(169,131,47,0.16);
-    color:var(--brass);
-  }
-  .leaf-btn.chapter-merged.zero{
-    opacity:.7;
-  }
-  .leaf-btn.chapter-merged.active{
-    box-shadow:none;
-    border-bottom:2px solid var(--seal);
-  }
-
-  footer{
-    text-align:center;
-    font-size:.78rem;
-    color:var(--ink-45);
-    padding:1.5rem 0 3rem;
-    max-width:1000px;
-    margin:0 auto;
-  }
-.book-feature{max-width:1000px;margin:24px auto 8px;padding:0 24px}.book-feature-inner{display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;align-items:center;background:var(--paper-panel);border:1px solid var(--line);border-left:7px solid var(--seal);border-radius:16px;padding:24px 30px;box-shadow:0 8px 28px #16233b0b}.book-cover-link{display:block}.book-feature img{display:block;width:100%;height:auto;border-radius:5px}.book-label{color:var(--seal);font-size:.8rem;letter-spacing:.12em;font-weight:700}.book-feature h2{font-family:'Noto Serif TC',serif;font-size:1.75rem;line-height:1.5;margin:9px 0;color:var(--ink)}.book-edition{display:inline-block;font-family:'Noto Sans TC',sans-serif;font-size:.85rem;padding:4px 10px;border-radius:20px;background:#f9e9eb;color:var(--seal);vertical-align:middle;margin-left:10px;white-space:nowrap}.book-feature p{color:var(--ink-70);line-height:1.85;margin:8px 0 16px}.book-button{display:inline-block;padding:11px 22px;background:var(--seal);color:#fff!important;border-radius:8px;text-decoration:none;font-weight:700}.book-button:hover{background:#7f2230}.book-feature a:focus-visible{outline:3px solid var(--brass);outline-offset:4px}@media(max-width:600px){.book-feature{padding:0 16px;margin-top:18px}.book-feature-inner{grid-template-columns:100px minmax(0,1fr);gap:16px;padding:20px 16px}.book-feature h2{font-size:1.3rem}.book-edition{margin:4px 0 0;font-size:.78rem}.book-feature p{font-size:.88rem}.book-button{font-size:.88rem;padding:10px 14px}}@media(max-width:360px){.book-feature-inner{grid-template-columns:80px minmax(0,1fr);gap:12px}.book-feature h2{font-size:1.15rem}}
-.workflow-video{max-width:1000px;margin:24px auto 8px;padding:0 24px}.workflow-video-inner{background:var(--paper-panel);border:1px solid var(--line);border-left:7px solid var(--brass);border-radius:16px;padding:22px 26px;box-shadow:0 8px 28px #16233b0b}.workflow-video h2{font-family:'Noto Serif TC',serif;font-size:1.45rem;line-height:1.5;margin:0 0 4px;color:var(--ink)}.workflow-video p{margin:0 0 14px;color:var(--ink-70);font-size:.92rem}.workflow-video video{display:block;width:100%;height:auto;border-radius:10px;background:#111418}@media(max-width:600px){.workflow-video{padding:0 16px;margin-top:18px}.workflow-video-inner{padding:16px 14px}.workflow-video h2{font-size:1.15rem}}
-.workflow-entry{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:20px;padding:14px 18px;border:1px solid var(--brass);border-left:5px solid var(--brass);border-radius:8px;background:var(--paper-panel);color:var(--indigo);text-decoration:none;max-width:760px}.workflow-entry strong{font-size:.95rem}.workflow-entry span{font-size:.8rem;color:var(--ink-70)}.workflow-entry:hover{background:#fff8e7}.workflow-entry:focus-visible{outline:3px solid var(--brass);outline-offset:4px}@media(max-width:600px){.workflow-entry{align-items:flex-start;padding:12px 14px}.workflow-entry strong{font-size:.9rem}.workflow-entry span{display:block;font-size:.78rem}}
-.tab-bar{max-width:1000px;margin:18px auto 0;padding:0 24px;display:flex;gap:.6rem;border-bottom:1px solid var(--line)}.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:.8rem 1rem;font-family:"Noto Sans TC",sans-serif;font-size:.95rem;font-weight:700;color:var(--ink-45);cursor:pointer}.tab-btn.active{color:var(--indigo);border-bottom-color:var(--indigo)}.tab-btn:hover{color:var(--indigo)}.tab-btn:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-.vibe-panel{max-width:1000px;margin:24px auto 8px;padding:0 24px}.vibe-intro{background:var(--paper-panel);border:1px solid var(--line);border-left:7px solid var(--indigo);border-radius:16px;padding:22px 26px;margin-bottom:22px}.vibe-intro h2{margin:0 0 8px;font-size:1.3rem;color:var(--indigo)}.vibe-intro p{margin:6px 0;line-height:1.8}.vibe-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}.vibe-card{display:block;background:var(--paper-panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;color:var(--indigo);text-decoration:none}.vibe-card:hover{background:#fff8e7}.vibe-card small{display:block;color:var(--ink-45);font-size:.8rem;margin-bottom:4px}.vibe-card strong{display:block;font-size:1.02rem;line-height:1.6}.vibe-card span{display:block;margin-top:6px;font-size:.85rem;color:var(--ink-70);line-height:1.7}
-
-.vibe-route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 22px}.vibe-route a{min-width:0;display:block;padding:18px;background:var(--paper-panel);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:10px;color:var(--indigo);text-decoration:none}.vibe-route small{display:block;font-size:.8rem;color:var(--ink-45)}.vibe-route strong{display:block;margin:6px 0;font-size:1rem;line-height:1.6}.vibe-route span{display:block;font-size:.85rem;line-height:1.7;color:var(--ink-70)}.vibe-route a:hover{background:#fff8e7}.vibe-route a:focus-visible,.vibe-card:focus-visible{outline:3px solid var(--brass);outline-offset:4px}.vibe-new{border-left:5px solid var(--brass)}@media(max-width:650px){.vibe-route{grid-template-columns:1fr}.vibe-panel{padding:0 16px}.vibe-intro{padding:20px 18px}.vibe-list{grid-template-columns:minmax(0,1fr)}}
-.teaching-license{box-sizing:border-box;max-width:1000px;margin:28px auto;padding:20px 24px;border:1px solid #d6dde3;border-left:5px solid #37658f;border-radius:12px;background:#fffdf8;color:#243347;font:15px/1.8 system-ui,"Microsoft JhengHei",sans-serif;overflow-wrap:anywhere;text-align:left}.teaching-license strong{display:block;font-size:18px;color:#243347}.teaching-license p{margin:8px 0}.teaching-license a{color:#315f87;text-decoration:underline;text-underline-offset:3px}.teaching-license .license-actions{display:flex;flex-wrap:wrap;gap:8px 20px}@media(max-width:650px){.teaching-license{margin:22px 14px;padding:17px 18px}}.card .title .topic{font-weight:800;color:var(--ink)}.cover h1{padding-right:88px}@media(max-width:600px){.cover h1{font-size:1.7rem}}</style>
+:root{--ink:#142b47;--muted:#637287;--blue:#205cba;--line:#dde5ee;--wash:#f3f6fa;--accent:#d9f36b;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--white);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:5px}button{cursor:pointer}button:disabled{cursor:default}header,main,footer{width:min(1120px,calc(100% - 64px));margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:25px 0;border-bottom:1px solid var(--line)}.brand{font-weight:800;font-size:1.08rem;display:flex;align-items:center;gap:11px}.brand-mark{width:32px;height:32px;background:var(--ink);color:var(--accent);border-radius:9px;display:grid;place-items:center;font-family:Georgia,serif;font-size:23px}header nav{display:flex;gap:25px;font-size:.86rem;color:var(--muted)}header nav a:hover,footer a:hover{color:var(--blue)}.hero{display:grid;grid-template-columns:1.08fr 1fr;align-items:center;gap:60px;padding:76px 0 70px}.eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.14em;color:var(--blue);margin:0 0 17px}.hero h1{font-size:clamp(2rem,3.8vw,3.05rem);line-height:1.42;letter-spacing:-.04em;margin:0 0 21px}.highlight{background:linear-gradient(transparent 63%,var(--accent) 63%,var(--accent) 94%,transparent 94%)}.hero-copy{font-size:1.02rem;color:var(--muted);max-width:390px;margin:0 0 30px}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;border-radius:8px;padding:12px 20px;font-weight:700;font-size:.9rem;border:1px solid var(--line);transition:transform .18s,background .18s}.btn:hover{transform:translateY(-2px);background:var(--wash)}.btn.primary{color:white;background:var(--blue);border-color:var(--blue)}.btn.primary:hover{background:#184d9d}.hero-note{font-size:.78rem;color:var(--muted);margin:17px 0 0}.feature{border-radius:20px;border:1px solid var(--line);overflow:hidden;background:#fff;box-shadow:0 15px 45px #142b4709;transition:transform .18s}.feature:hover{transform:translateY(-4px)}.illustration{background:#edf2f9;position:relative;overflow:hidden;aspect-ratio:1.65}.illustration svg{display:block;width:100%;height:100%}.feature-label{position:absolute;top:18px;left:20px;font-size:.7rem;letter-spacing:.06em;font-weight:800;background:#fff;padding:3px 10px;border-radius:5px}.feature-body{padding:23px 26px 25px}.feature-meta{display:flex;gap:12px;align-items:center;font-size:.75rem;color:var(--muted)}.tag{background:var(--wash);color:var(--blue);padding:2px 9px;border-radius:4px;font-weight:700}.feature h2{font-size:1.5rem;margin:10px 0 8px;line-height:1.5}.feature p{font-size:.87rem;color:var(--muted);margin:0}.feature-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:19px;font-size:.82rem;font-weight:700}.arrow{color:var(--blue);font-size:1.15rem}.section{padding:48px 0 52px;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}.section-head h2{font-size:1.65rem;margin:0 0 5px;letter-spacing:-.02em}.section-head p{font-size:.88rem;color:var(--muted);margin:0}.section-note{font-size:.76rem;color:var(--muted);white-space:nowrap}.topics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.topic{border:1px solid var(--line);border-radius:12px;padding:22px 23px;position:relative}.topic.available{background:#f4f8ff;border-color:#bbd0ef;transition:border-color .18s,transform .18s}.topic.available:hover{border-color:var(--blue);transform:translateY(-3px)}.topic-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.topic-number{font-family:Georgia,serif;color:#8593a7;font-size:1rem}.status{font-size:.7rem;color:var(--muted)}.available .status{color:var(--blue);font-weight:700}.topic h3{font-size:1rem;line-height:1.6;margin:0 0 7px}.topic p{margin:0;font-size:.79rem;color:var(--muted)}.topic .arrow{position:absolute;right:22px;bottom:20px}.library-tools{display:flex;gap:12px;margin-bottom:17px}.search-wrap{flex:1;position:relative}.search-wrap svg{width:18px;height:18px;position:absolute;left:16px;top:17px;color:var(--muted)}input[type=search],select{width:100%;height:52px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:white}input[type=search]{padding:10px 15px 10px 46px}select{width:220px;padding:10px 13px}.result-bar{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:15px;margin:13px 0 20px;min-height:27px}.reset{color:var(--blue);font-size:.76rem;border:0;background:transparent;padding:2px 0;text-decoration:underline;text-underline-offset:3px}.materials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.material{border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .18s,border-color .18s}.material:hover{transform:translateY(-3px);border-color:#9fb7db}.material-art{height:158px;background:#edf2f9;display:flex;align-items:center;justify-content:center;position:relative}.material-art strong{font-size:2rem;letter-spacing:.06em;transform:rotate(-5deg);background:var(--accent);padding:5px 22px;border:2px solid var(--ink);border-radius:7px;box-shadow:6px 6px 0 #142b471a}.play{position:absolute;bottom:12px;right:13px;background:var(--ink);color:white;border-radius:5px;font-size:.7rem;padding:2px 8px}.material-body{padding:21px}.material h3{font-size:1.1rem;margin:10px 0 9px;line-height:1.55}.material p{font-size:.8rem;color:var(--muted);margin:0}.material-foot{font-size:.74rem;margin-top:20px;color:var(--blue);font-weight:700}.empty{padding:35px 20px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted)}[hidden]{display:none!important}.law-index{margin-top:30px;border:1px solid var(--line);border-radius:10px;padding:0 22px}.law-index summary{padding:18px 0;cursor:pointer;font-size:.88rem;font-weight:700}.law-intro{font-size:.79rem;color:var(--muted);margin:0 0 17px}.law-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;padding-bottom:17px}.law-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border:0;border-top:1px solid var(--line);background:none;text-align:left;font-size:.8rem;width:100%;color:var(--muted)}button.law-row{color:var(--blue);font-weight:700}.law-count{font-size:.7rem;white-space:nowrap}.about{background:var(--wash);border-radius:12px;padding:27px 30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;margin:0 0 55px}.about b{font-size:.86rem}.about p{font-size:.78rem;margin:6px 0 0;color:var(--muted)}footer{display:flex;justify-content:space-between;gap:25px;padding:25px 0 35px;border-top:1px solid var(--line);font-size:.75rem;color:var(--muted)}footer p{margin:0}footer div{display:flex;gap:22px} @media(max-width:850px){.hero{gap:30px;padding:55px 0}.hero h1{font-size:2.25rem}.topics{grid-template-columns:repeat(2,minmax(0,1fr))}.materials{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-copy{font-size:.94rem}}@media(max-width:600px){header,main,footer{width:calc(100% - 36px)}header{padding:19px 0;gap:12px}.brand{font-size:.94rem;gap:7px}header nav{gap:14px;font-size:.75rem}.brand-mark{width:27px;height:27px;font-size:20px}.hero{grid-template-columns:1fr;gap:32px;padding:42px 0}.hero h1{font-size:2.18rem}.hero-copy{max-width:none}.feature-body{padding:20px}.section{padding:34px 0}.section-head{align-items:start}.section-head h2{font-size:1.4rem}.section-note{display:none}.topic{padding:18px 16px}.topic-top{margin-bottom:18px}.topic h3{font-size:.91rem}.topic p{font-size:.74rem;max-width:calc(100% - 12px)}.topic .arrow{right:13px;bottom:16px}.topics{gap:10px}.library-tools{flex-direction:column;gap:9px}select{width:100%}.materials{grid-template-columns:1fr}.material-art{height:180px}.law-grid{grid-template-columns:1fr}.law-index{padding:0 16px}.about{grid-template-columns:1fr;gap:18px;padding:23px;margin-bottom:35px}footer{flex-direction:column;gap:12px}.feature h2{font-size:1.4rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
-
-<div class="cover">
-  <div class="eyebrow">fair-trade-law-interpretation · AI Skill</div>
-  <h1>公平交易法．條文動畫與互動講義</h1>
-  <p class="sub">公平交易法．第一章總則至第七章附則（§1–50）</p>
-  <div class="cover-meta">
-    <span class="ver-badge">v1.0</span>
-    <span class="meta-date">2026-10-30</span>
-    <img src="https://visitor-badge.laobi.icu/badge?page_id=mjib007.fair-trade-law-interpretation.index" alt="Visitors" style="opacity:0.85;vertical-align:middle;">
-  </div>
-  <p class="license-note"><a href="licensing.html">教材使用說明</a>｜公開閱覽，重製或改編請先取得同意</p>
-  <p class="license-note">姊妹站：<a href="https://mjib007.github.io/criminal-law-interpretation/">刑法教材總覽</a>｜條文依全國法規資料庫現行條文（民國106年6月14日修正）</p>
-  <div class="seal-mark">總覽</div>
-</div>
-<main>
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="搜尋條號或主題關鍵字…">
-    <select id="categorySelect"></select>
-  </div>
-
-  <div class="coverage">
-    <div class="coverage-header">
-      <h2>分類覆蓋地圖（公平交易法 §1–50）</h2>
-      <span class="progress" id="coverageProgress"></span>
-    </div>
-    <div class="coverage-sub">行為規範（第一章至第三章）</div>
-    <div class="coverage-grid" id="coverageGrid1"></div>
-    <div class="coverage-sub">程序與法律效果（第四章至第七章）</div>
-    <div class="coverage-grid" id="coverageGrid2"></div>
-  </div>
-
-  <div class="count" id="countLabel"></div>
-  <div class="cards" id="cardGrid"></div>
-  <div class="empty" id="emptyState" style="display:none;">沒有符合條件的講義（第一份講義：第21條不實廣告，製作中）</div>
+<a href="#main" style="position:absolute;left:-9999px" onfocus="this.style.left='15px'" onblur="this.style.left='-9999px'">跳至主要內容</a>
+<header><a class="brand" href="./" aria-label="公平交易法首頁"><span class="brand-mark" aria-hidden="true">§</span>公平交易法<span style="font-weight:400;color:#8994a3">／</span>生活裡的競爭</a><nav aria-label="首頁導覽"><a href="#topics">主題</a><a href="#library">教材</a><a href="licensing.html">授權</a></nav></header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div><p class="eyebrow">FAIR TRADE LAW · 從生活案例開始</p><h1 id="hero-title">廣告可以<span class="highlight">誇張</span><br>到什麼程度？</h1><p class="hero-copy">同業能一起決定價格嗎？品牌可以規定店家售價嗎？從你遇過的交易，讀懂公平交易法。</p><div class="actions"><a class="btn primary" href="lectures/false-advertising.html">從第一課開始 <span aria-hidden="true">↗</span></a><a class="btn" href="#library">瀏覽所有教材 <span aria-hidden="true">↓</span></a></div><p class="hero-note">短動畫掌握觀念 · 逐句讀法條 · 動手練判斷</p></div>
+<a class="feature" href="lectures/false-advertising.html" aria-label="閱讀第一課：買一送一，卻比較貴？不實廣告">
+<div class="illustration"><span class="feature-label">第一課 · 不實廣告</span>
+<svg viewBox="0 0 500 303" role="img" aria-label="促銷標示買一送一，旁邊的放大鏡提醒檢查價格"><defs><pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#ccd7e6"/></pattern></defs><rect width="500" height="303" fill="url(#dots)"/><circle cx="420" cy="290" r="170" fill="#e0e9f6"/><g transform="translate(95 65) rotate(-6 130 90)"><rect x="7" y="9" width="264" height="167" rx="13" fill="#142b4712"/><rect width="264" height="167" rx="13" fill="white" stroke="#142b47" stroke-width="2.5"/><path d="M0 48V13Q0 0 13 0H251Q264 0 264 13V48" fill="#d9f36b"/><text x="22" y="32" font-size="17" font-family="sans-serif" font-weight="700" fill="#142b47">LIMITED OFFER</text><text x="22" y="106" font-size="43" font-family="Microsoft JhengHei,sans-serif" font-weight="700" fill="#142b47">買一送一</text><path d="M23 129H165" stroke="#c5d0df" stroke-width="3"/><path d="M23 143H116" stroke="#c5d0df" stroke-width="3"/></g><g transform="translate(333 154) rotate(-18)"><path d="M35 67L75 119" stroke="#142b47" stroke-width="18" stroke-linecap="round"/><circle cx="19" cy="31" r="46" fill="#f8fbff" fill-opacity=".94" stroke="#142b47" stroke-width="7"/><text x="19" y="46" text-anchor="middle" font-size="43" font-weight="700" font-family="Georgia,serif" fill="#205cba">?</text></g><path d="M404 80L414 66M425 88L444 84" stroke="#205cba" stroke-width="3" stroke-linecap="round"/></svg>
+</div><div class="feature-body"><div class="feature-meta"><span class="tag">公平交易法第21條</span><span>動畫 85 秒</span></div><h2>買一送一，卻比較貴？</h2><p>從促銷案例出發，看廣告的整體印象如何影響交易決定。</p><div class="feature-bottom"><span>看動畫、讀條文，再做六題練習</span><span class="arrow" aria-hidden="true">↗</span></div></div></a>
+</section>
+<section class="section" id="topics" aria-labelledby="topics-title"><div class="section-head"><div><p class="eyebrow">FOLLOW YOUR QUESTION</p><h2 id="topics-title">從你想問的問題開始</h2><p>先找到生活裡的疑問，再認識背後的法律。</p></div><span class="section-note">依學習主題分類</span></div>
+<div class="topics">
+<a class="topic available" href="lectures/false-advertising.html"><div class="topic-top"><span class="topic-number">01</span><span class="status">第一課已上線</span></div><h3>廣告說的和實際不同？</h3><p>不實廣告</p><span class="arrow" aria-hidden="true">↗</span></a>
+<article class="topic"><div class="topic-top"><span class="topic-number">02</span><span class="status">後續課程</span></div><h3>同業一起漲價可以嗎？</h3><p>聯合行為</p></article>
+<article class="topic"><div class="topic-top"><span class="topic-number">03</span><span class="status">後續課程</span></div><h3>品牌能規定店家售價嗎？</h3><p>轉售價格限制</p></article>
+<article class="topic"><div class="topic-top"><span class="topic-number">04</span><span class="status">後續課程</span></div><h3>大公司可以排擠對手嗎？</h3><p>獨占與限制競爭</p></article>
+<article class="topic"><div class="topic-top"><span class="topic-number">05</span><span class="status">後續課程</span></div><h3>模仿、搶客的界線在哪？</h3><p>不公平競爭</p></article>
+<article class="topic"><div class="topic-top"><span class="topic-number">06</span><span class="status">後續課程</span></div><h3>違法之後，誰能求償？</h3><p>調查、處罰與賠償</p></article>
+</div></section>
+<section class="section" id="library" aria-labelledby="library-title"><div class="section-head"><div><p class="eyebrow">THE LEARNING LIBRARY</p><h2 id="library-title">所有教材</h2><p>看完影片，回到講義慢慢讀，也可以直接找條號。</p></div></div>
+<div class="library-tools"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg><label for="searchInput" hidden>搜尋教材標題、主題或條號</label><input id="searchInput" type="search" placeholder="搜尋主題、案例或條號，例如：廣告、21" autocomplete="off"></div><label for="categorySelect" hidden>按法規章節篩選</label><select id="categorySelect"><option value="">全部章節</option><option value="1">第一章 總則</option><option value="2">第二章 限制競爭</option><option value="3">第三章 不公平競爭</option><option value="4">第四章 調查及裁處程序</option><option value="5">第五章 損害賠償</option><option value="6">第六章 罰則</option><option value="7">第七章 附則</option></select></div>
+<div class="result-bar"><span id="countLabel" aria-live="polite">共 1 份教材</span><button type="button" id="resetFilters" class="reset" hidden>清除篩選</button></div>
+<div class="materials" id="cardGrid"><a class="material" data-chapter="3" data-search="第21條 21 二十一 不實廣告 買一送一 卻比較貴 公處字第114006號 價格 促銷 薦證 連帶責任" href="lectures/false-advertising.html"><div class="material-art" aria-hidden="true"><strong>買一送一？</strong><span class="play">▶ 85 秒</span></div><div class="material-body"><span class="tag">第21條 · 不實廣告</span><h3>買一送一，卻比較貴？</h3><p>促銷案例、條文逐段讀、誰要負責，以及六題判斷練習。</p><div class="material-foot">動畫 ＋ 互動講義 <span aria-hidden="true">↗</span></div></div></a></div>
+<div class="empty" id="emptyState" hidden><p>目前沒有符合條件的教材。</p><button class="reset" type="button" id="emptyReset">顯示所有教材</button></div>
+<details class="law-index"><summary>依法條找教材</summary><p class="law-intro">依公平交易法章節排列。已有教材的章節可點選篩選。</p><div class="law-grid"><div class="law-row"><span>第一章 總則 · §1–6</span><span class="law-count">尚無教材</span></div><div class="law-row"><span>第二章 限制競爭 · §7–20</span><span class="law-count">尚無教材</span></div><button class="law-row" type="button" data-filter="3"><span>第三章 不公平競爭 · §21–25</span><span class="law-count">1 份教材 ↗</span></button><div class="law-row"><span>第四章 調查及裁處程序 · §26–28</span><span class="law-count">尚無教材</span></div><div class="law-row"><span>第五章 損害賠償 · §29–33</span><span class="law-count">尚無教材</span></div><div class="law-row"><span>第六章 罰則 · §34–44</span><span class="law-count">尚無教材</span></div><div class="law-row"><span>第七章 附則 · §45–50</span><span class="law-count">尚無教材</span></div></div></details>
+<noscript><p>搜尋與篩選需要啟用 JavaScript；你仍可直接開啟上方教材。</p></noscript>
+</section>
+<aside class="about" aria-label="教材的三種學習方式"><div><b>01 ／ 先看一個生活案例</b><p>短動畫把問題說清楚，建立第一個印象。</p></div><div><b>02 ／ 一句一句讀法條</b><p>保留原文，搭配白話解釋理解判斷步驟。</p></div><div><b>03 ／ 換你試著判斷</b><p>操作互動練習，再回頭檢查理解的地方。</p></div></aside>
 </main>
-
-<aside class="teaching-license" aria-label="教材使用說明"><strong>教材使用說明</strong><p>歡迎閱覽、觀看及分享原始連結。教材重製、改編或平台整合，請先取得同意。</p><div class="license-actions"><a href="licensing.html">使用說明 →</a></div></aside>
-<footer>fair-trade-law-interpretation · 公平交易法．學習歷程紀錄 · <a href="licensing.html">教材使用說明</a></footer>
-
+<footer><p>© 錢世傑 Jackie Chien · 公平交易法教材</p><div><a href="licensing.html">教材授權與合作</a><a href="https://mjib007.github.io/criminal-law-interpretation/">刑法姊妹站 ↗</a></div></footer>
 <script>
-/* ============================================================
-   分類架構：公平交易法第一章至第七章（§1–50，含§47-1）
-   key 對應「主要條文所在章」，作為每份講義的單一主分類
-   ============================================================ */
-const CHAPTERS = [
-  { key: "1", label: "第一章 總則（§1）" },
-  { key: "2", label: "第二章 限制競爭（§7）" },
-  { key: "3", label: "第三章 不公平競爭（§21）" },
-  { key: "4", label: "第四章 調查及裁處程序（§26）" },
-  { key: "5", label: "第五章 損害賠償（§29）" },
-  { key: "6", label: "第六章 罰則（§34）" },
-  { key: "7", label: "第七章 附則（§45）" }
-];
-
-/* ============================================================
-   講義清單：每完成一份講義，新增一筆物件即可
-   - articles: 條號（顯示用）
-   - title: 題目與說明
-   - topics: 卡片中要加粗的主題詞（須與title文字相同）
-   - date: 完成日期 YYYY-MM-DD
-   - chapterKey: 對應 CHAPTERS 的 key（單一主分類，以主要條文所在章為準）
-   - file: 講義相對路徑
-   ============================================================ */
-const LECTURES = [
-  {
-    articles: "第21條",
-    title: "買一送一，卻比較貴？不實廣告（公處字第114006號、條文逐段讀、誰要負責、六題練習）",
-    topics: ["不實廣告"],
-    date: "2026-10-30",
-    chapterKey: "3",
-    file: "lectures/false-advertising.html"
-  }
-];
-
-/* ============================================================
-   分類覆蓋地圖：第一編／第二編各自的章節清單（葉節點 key 對應 CHAPTERS）
-   ============================================================ */
-const TREE_1 = CHAPTERS.filter(c => ["1","2","3"].includes(c.key)).map(c => ({ key: c.key, label: c.label }));
-const TREE_2 = CHAPTERS.filter(c => ["4","5","6","7"].includes(c.key)).map(c => ({ key: c.key, label: c.label }));
-
-/* ============================================================
-   Rendering
-   ============================================================ */
-const chapterMap = Object.fromEntries(CHAPTERS.map(c => [c.key, c.label]));
-
-function countFor(key){
-  return LECTURES.filter(item => item.chapterKey === key).length;
-}
-
-function initCategorySelect(){
-  const select = document.getElementById('categorySelect');
-  const allOption = document.createElement('option');
-  allOption.value = '';
-  allOption.textContent = '全部分類';
-  select.appendChild(allOption);
-  CHAPTERS.forEach(c => {
-    const opt = document.createElement('option');
-    opt.value = c.key;
-    opt.textContent = c.label;
-    select.appendChild(opt);
-  });
-}
-
-function selectCategory(key){
-  const items = LECTURES.filter(item => item.chapterKey === key);
-  if (items.length === 0) return;
-
-  if (items.length === 1){
-    window.open(items[0].file, '_blank', 'noopener');
-    return;
-  }
-
-  const select = document.getElementById('categorySelect');
-  select.value = (select.value === key) ? '' : key;
-  render();
-  document.getElementById('countLabel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function makeMergedButton(labelText, leaf){
-  const activeKey = document.getElementById('categorySelect').value;
-  const n = countFor(leaf.key);
-  const stateClass = n === 0 ? 'zero' : 'has-count';
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'leaf-btn chapter-merged ' + stateClass + (activeKey === leaf.key ? ' active' : '');
-  btn.disabled = (n === 0);
-  btn.innerHTML = `<span>${labelText}</span><span class="badge">${n === 0 ? '–' : n}</span>`;
-  btn.addEventListener('click', () => selectCategory(leaf.key));
-  return btn;
-}
-
-function renderCoverageMap(){
-  [["coverageGrid1", TREE_1], ["coverageGrid2", TREE_2]].forEach(([gridId, tree]) => {
-    const grid = document.getElementById(gridId);
-    grid.innerHTML = '';
-    tree.forEach(leaf => {
-      const block = document.createElement('div');
-      block.className = 'chapter-block';
-      block.appendChild(makeMergedButton(leaf.label, leaf));
-      grid.appendChild(block);
-    });
-  });
-
-  const coveredLeaves = CHAPTERS.filter(c => countFor(c.key) > 0).length;
-  document.getElementById('coverageProgress').textContent =
-    `已覆蓋 ${coveredLeaves} / ${CHAPTERS.length} 章 · 共 ${LECTURES.length} 篇講義`;
-}
-
-/* 卡片圖示：讓讀者點之前就知道會開什麼
-   🎬 連結是 YouTube 影片
-   📖 連結是本站講義網頁；網頁內嵌 YouTube 影片時再加 🎬（程式讀取網頁內容判斷） */
-const isVideo = url => /^https?:\/\/(www\.)?(youtu\.be|youtube\.com)\//.test(url);
-const embedCache = {};
-function markEmbeddedVideo(url, titleEl){
-  const apply = has => { if (has && !titleEl.dataset.video){ titleEl.dataset.video = "1"; titleEl.firstChild.textContent = "📖🎬 "; } };
-  if (url in embedCache){ apply(embedCache[url]); return; }
-  fetch(url).then(r => r.ok ? r.text() : "").then(html => {
-    embedCache[url] = /youtube(-nocookie)?\.com\/embed\//.test(html);
-    apply(embedCache[url]);
-  }).catch(() => { embedCache[url] = false; });
-}
-
-function formatCardTitle(item){
-  const escape = value => value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  const ranges = (item.topics || []).map(topic => ({start:item.title.indexOf(topic), text:topic})).filter(part => part.start >= 0).sort((a,b) => a.start-b.start);
-  let result = '', cursor = 0;
-  ranges.forEach(part => {
-    if (part.start < cursor) return;
-    result += escape(item.title.slice(cursor, part.start)) + '<strong class="topic">' + escape(part.text) + '</strong>';
-    cursor = part.start + part.text.length;
-  });
-  return result + escape(item.title.slice(cursor));
-}
-
+const search = document.getElementById('searchInput');
+const category = document.getElementById('categorySelect');
+const cards = Array.from(document.querySelectorAll('.material'));
+const count = document.getElementById('countLabel');
+const resetButton = document.getElementById('resetFilters');
 function render(){
-  const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
-  const categorySelectEl = document.getElementById('categorySelect');
-  const category = categorySelectEl.value;
-  categorySelectEl.classList.toggle('filtered', category !== '');
-
-  const filtered = LECTURES.filter(item => {
-    const matchesKeyword = !keyword ||
-      item.articles.toLowerCase().includes(keyword) ||
-      item.title.toLowerCase().includes(keyword);
-    const matchesCategory = !category || item.chapterKey === category;
-    return matchesKeyword && matchesCategory;
-  }).sort((a, b) => b.date.localeCompare(a.date));
-
-  const grid = document.getElementById('cardGrid');
-  const empty = document.getElementById('emptyState');
-  const count = document.getElementById('countLabel');
-
-  count.textContent = `共 ${filtered.length} 份講義（總計 ${LECTURES.length} 份）`;
-
-  grid.innerHTML = '';
-  if (filtered.length === 0){
-    empty.style.display = 'block';
-  } else {
-    empty.style.display = 'none';
-    filtered.forEach(item => {
-      const a = document.createElement('a');
-      a.className = 'card';
-      a.href = item.file;
-      a.target = item.file.startsWith('lectures/') ? '_self' : '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = `
-        <div class="articles">${item.articles}</div>
-        <div class="title"><span class="icon">${isVideo(item.file) ? '🎬 ' : '📖 '}</span>${formatCardTitle(item)}</div>
-        <div class="meta">
-          <span class="tag">${chapterMap[item.chapterKey] || item.chapterKey}</span>
-        </div>
-        <div class="meta" style="margin-top:.5rem;">
-          <span class="date">${item.date}</span>
-        </div>
-      `;
-      if (!isVideo(item.file)) markEmbeddedVideo(item.file, a.querySelector('.title'));
-      grid.appendChild(a);
-    });
-  }
-
-  renderCoverageMap();
+  const keyword = search.value.trim().toLocaleLowerCase();
+  let matches = 0;
+  cards.forEach(card => {
+    const show = (!keyword || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase().includes(keyword)) && (!category.value || card.dataset.chapter === category.value);
+    card.hidden = !show;
+    if(show) matches++;
+  });
+  const filtered = Boolean(keyword || category.value);
+  count.textContent = filtered ? `找到 ${matches} 份教材（共 ${cards.length} 份）` : `共 ${cards.length} 份教材`;
+  document.getElementById('emptyState').hidden = matches > 0;
+  resetButton.hidden = !filtered;
 }
-
-initCategorySelect();
-let searchScrollTimer = null;
-document.getElementById('searchInput').addEventListener('input', () => {
-  render();
-  clearTimeout(searchScrollTimer);
-  const keyword = document.getElementById('searchInput').value.trim();
-  if (keyword){
-    searchScrollTimer = setTimeout(() => {
-      document.getElementById('countLabel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 500);
-  }
-});
-document.getElementById('categorySelect').addEventListener('change', render);
+function reset(){search.value='';category.value='';render();search.focus();}
+search.addEventListener('input',render);
+category.addEventListener('change',render);
+resetButton.addEventListener('click',reset);
+document.getElementById('emptyReset').addEventListener('click',reset);
+document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click',()=>{
+  search.value='';category.value=button.dataset.filter;render();
+  document.getElementById('library').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  category.focus({preventScroll:true});
+}));
 render();
-
 </script>
-
-</body>
-</html>
+</body></html>
